@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>JSON to HTML</title>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div class="container">
+		<div class="table-responsive">
+			<h1 align="center">JSON Data to HTML Bootstrap Table view</h1> <br>
+			<p align="center">JSON, HTML, AJAX, JQuery with Bootstrap</p> <hr>
+			<table class="table table-bordered table-striped" id="user_table">
+				<tr>
+					<th>User ID</th>
+					<th>First Name</th>
+					<th>Last Name</th>
+					<th>Gender</th>
+					<th>Age</th>
+					<th>Country</th>
+				</tr>
+			</table>
+		</div>
+	</div>
+</body>
+</html>
+
+<script>
+	$(document).ready(function(){
+		$.getJSON("user.json", function(data){
+			var user_data = '';
+			$.each(data, function(key, value){
+				user_data += '<tr>';
+				user_data += '<td>' + value.userID + '</td>';
+				user_data += '<td>' + value.firstName + '</td>';
+				user_data += '<td>' + value.lastName + '</td>';
+				user_data += '<td>' + value.gender + '</td>';
+				user_data += '<td>' + value.age + '</td>';
+				user_data += '<td>' + value.country + '</td>';
+				user_data += '</tr>';
+			});
+			$('#user_table').append(user_data);
+		});
+	});
+</script>
